@@ -6,6 +6,7 @@ Created on Thu Sep 19 14:41:21 2013
 """
 
 import pyNN.brian as pynn
+import numpy
 
 default_params = {
 "wi": 0.01,
@@ -66,3 +67,29 @@ class ThreePops(object):
         spikes = self.target.getSpikes()
         return spikes
         
+def make_the_simulation():
+    # first panel: vary re and ri between 10 and 50 in five steps
+    num_tn = 50.
+    num_spikes = numpy.zeros((25,25))
+    param_dicts = numpy.zeros((25,25), dtype=object)
+    net = network.ThreePops()
+    net.make_network(param_dict=default_params)
+    lastnumspikes = 0
+    for ire,re in enumerate(numpy.arange(10.,50.01,10)):
+        for iri,ri in enumerate(numpy.arange(10.,50.01,10)):
+            for iwe,we in enumerate(numpy.linspace(0.001,0.005,5)):
+                for iwi,wi in enumerate(numpy.linspace(0.005,0.015,5)):
+                    print "re:%.0f, ri:%.0f"%(re,ri)
+                    params = default_params.copy()
+                    params.update({'re':re, 'ri':ri, 'we':we, 'wi':wi})
+                    index = (iwe*5 + ire, iwi*5+iri)
+                    param_dicts[index] = params
+                    net.update_weights_and_rates(params)
+                    spikes = net.run_network()
+                    currentnumspikes = len(spikes)
+                    num_spikes[index] = (currentnumspikes - lastnumspikes)/num_tn
+                    lastnumspikes = currentnumspikes
+    cPickle.dump(num_spikes, open('numspikes.cPickle','w'))
+    cPickle.dump(param_dicts, open('paramdicts.cPickle','w'))
+
+    
