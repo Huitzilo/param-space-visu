@@ -7,6 +7,7 @@ Created on Thu Sep 19 14:41:21 2013
 
 import pyNN.brian as pynn
 import numpy
+import cPickle
 
 default_params = {
 "wi": 0.01,
@@ -72,7 +73,7 @@ def make_the_simulation():
     num_tn = 50.
     num_spikes = numpy.zeros((25,25))
     param_dicts = numpy.zeros((25,25), dtype=object)
-    net = network.ThreePops()
+    net = ThreePops()
     net.make_network(param_dict=default_params)
     lastnumspikes = 0
     for ire,re in enumerate(numpy.arange(10.,50.01,10)):
