@@ -11,11 +11,14 @@ import cPickle
 
 default_params = {
 "wi": 0.01,
-"we": 0.0025,
-"ri": 10.,
-"re": 10.,
+"we": 0.005,
+"ri": 30.,
+"re": 30.,
 "p_conn_et": 0.1,
-"p_conn_it": 0.1}
+"p_conn_it": 0.1,
+"num_e":200,
+"num_i":50,
+"num_t":30}
 
 # vary re between 10 and 50, ri between 10 and 50 (5 steps)
 # next: vary we between 0.001 and 0.005, wi between 0.005 and 0.015 (5 steps)
@@ -35,11 +38,14 @@ class ThreePops(object):
         Construct the network according to the parameters specified.
         """
         pynn.setup()
-        self.exc = pynn.Population(200, pynn.SpikeSourcePoisson, 
-                                       cellparams={'rate':param_dict['re']})
-        self.inh = pynn.Population(50, pynn.SpikeSourcePoisson, 
-                                       cellparams={'rate':param_dict['ri']})
-        self.target = pynn.Population(50, pynn.IF_cond_exp)
+        self.exc = pynn.Population(param_dict['num_e'], 
+                                   pynn.SpikeSourcePoisson, 
+                                   cellparams={'rate':param_dict['re']})
+        self.inh = pynn.Population(param_dict['num_i'], 
+                                   pynn.SpikeSourcePoisson, 
+                                   cellparams={'rate':param_dict['ri']})
+        self.target = pynn.Population(param_dict['num_t'], 
+                                      pynn.IF_cond_exp)
         self.target.record(to_file=False)
         
         connector_et = pynn.FixedProbabilityConnector(
@@ -68,18 +74,17 @@ class ThreePops(object):
         spikes = self.target.getSpikes()
         return spikes
         
-def make_the_simulation():
+def make_the_simulation(params=default_params):
     # first panel: vary re and ri between 10 and 50 in five steps
-    num_tn = 50.
     num_spikes = numpy.zeros((25,25))
     param_dicts = numpy.zeros((25,25), dtype=object)
     net = ThreePops()
-    net.make_network(param_dict=default_params)
+    net.make_network(param_dict=params)
     lastnumspikes = 0
-    for ire,re in enumerate(numpy.arange(10.,50.01,10)):
-        for iri,ri in enumerate(numpy.arange(10.,50.01,10)):
-            for iwe,we in enumerate(numpy.linspace(0.001,0.005,5)):
-                for iwi,wi in enumerate(numpy.linspace(0.005,0.015,5)):
+    for ire,re in enumerate(numpy.linspace(20.,40.,5)):
+        for iri,ri in enumerate(numpy.linspace(20.,40.,5)):
+            for iwe,we in enumerate(numpy.linspace(0.003,0.007,5)):
+                for iwi,wi in enumerate(numpy.linspace(0.008,0.012,5)):
                     print "re:%.0f, ri:%.0f"%(re,ri)
                     params = default_params.copy()
                     params.update({'re':re, 'ri':ri, 'we':we, 'wi':wi})
@@ -88,7 +93,7 @@ def make_the_simulation():
                     net.update_weights_and_rates(params)
                     spikes = net.run_network()
                     currentnumspikes = len(spikes)
-                    num_spikes[index] = (currentnumspikes - lastnumspikes)/num_tn
+                    num_spikes[index] = (currentnumspikes - lastnumspikes)/params['num_t']
                     lastnumspikes = currentnumspikes
     cPickle.dump(num_spikes, open('numspikes.cPickle','w'))
     cPickle.dump(param_dicts, open('paramdicts.cPickle','w'))
