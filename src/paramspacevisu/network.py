@@ -51,7 +51,7 @@ class ThreePops(object):
         self.prj_et = pynn.Projection(self.exc, self.target, 
                   method=connector_et)
         self.prj_it = pynn.Projection(self.inh, self.target, 
-                  method=connector_ei)
+                  method=connector_ei, target='inhibitory')
     
     def update_weights_and_rates(self, param_dict):
         self.exc.set('rate', param_dict['re'])
