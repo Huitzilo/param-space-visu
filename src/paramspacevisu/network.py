@@ -85,7 +85,7 @@ def make_the_simulation(params=default_params):
         for iri,ri in enumerate(numpy.linspace(20.,40.,5)):
             for iwe,we in enumerate(numpy.linspace(0.003,0.007,5)):
                 for iwi,wi in enumerate(numpy.linspace(0.008,0.012,5)):
-                    print "re:%.0f, ri:%.0f"%(re,ri)
+                    print "re:%.1f, ri:%.1f, we:%.4f, wi:%.4f"%(re,ri,we,wi)
                     params = default_params.copy()
                     params.update({'re':re, 'ri':ri, 'we':we, 'wi':wi})
                     index = (iwe*5 + ire, iwi*5+iri)
