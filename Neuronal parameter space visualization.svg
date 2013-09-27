@@ -525,22 +525,22 @@
     <image
        sodipodi:absref="/home/micha/Projects/paramspacevisu/param-space-visu/images/../images/panelC.png"
        xlink:href="images/panelC.png"
-       y="769.17786"
-       x="123.46368"
-       id="image3141"
-       height="106.26498"
-       width="106.26498"
+       transform="matrix(1.257177,0,0,1.257177,-140.9951,-73.427798)"
        clip-path="url(#clipPath5705)"
-       transform="matrix(1.257177,0,0,1.257177,-140.9951,-73.427798)" />
+       width="106.26498"
+       height="106.26498"
+       id="image3141"
+       x="123.46368"
+       y="769.17786" />
     <image
        sodipodi:absref="/home/micha/Projects/paramspacevisu/param-space-visu/images/../images/panelD.png"
        xlink:href="images/panelD.png"
-       y="629.19171"
-       x="229.58665"
-       id="image3203"
-       height="379.15158"
+       clip-path="url(#clipPath5876)"
        width="379.15158"
-       clip-path="url(#clipPath5876)" />
+       height="379.15158"
+       id="image3203"
+       x="229.58665"
+       y="629.19171" />
     <g
        id="g5709"
        transform="translate(-15.416321,1.4682211)">
@@ -701,13 +701,13 @@
     <image
        sodipodi:absref="/home/micha/Projects/paramspacevisu/param-space-visu/images/../images/panelB.png"
        xlink:href="images/panelB.png"
-       y="765.82599"
-       x="-1.3133829"
-       id="image3079"
-       height="109.52803"
-       width="131.43365"
+       transform="matrix(1.3382129,0,0,1.3382129,10.464925,-269.65322)"
        clip-path="url(#clipPath5697)"
-       transform="matrix(1.257177,0,0,1.257177,14.577499,-203.09665)" />
+       width="131.43365"
+       height="109.52803"
+       id="image3079"
+       x="-1.3133829"
+       y="765.82599" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot5752"
@@ -724,7 +724,7 @@
        xml:space="preserve"
        id="flowRoot5752-0"
        style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       transform="translate(-0.67084352,768.46983)"><flowRegion
+       transform="translate(-0.67084352,756.46983)"><flowRegion
          id="flowRegion5754-2"><rect
            id="rect5756-2"
            width="31.145672"
@@ -736,7 +736,7 @@
        xml:space="preserve"
        id="flowRoot5752-7"
        style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       transform="translate(-0.67084352,896.16708)"><flowRegion
+       transform="translate(-0.67084352,888.16708)"><flowRegion
          id="flowRegion5754-0"><rect
            id="rect5756-6"
            width="31.145672"
